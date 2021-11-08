@@ -21,7 +21,7 @@ export const FileInput = () => {
 
   return (
     <Box>
-      <Box marginRight={1}>
+      <Box marginLeft={1}>
         <Text>Введіть шлях до файлу з даними: </Text>
       </Box>
       <TextInput onSubmit={(value) => setPath(value)} />
