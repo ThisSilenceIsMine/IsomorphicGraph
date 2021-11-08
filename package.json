@@ -1,5 +1,5 @@
 {
-	"name": "IsomorphicGraphs",
+	"name": "isomorphic-graphs",
 	"version": "0.0.0",
 	"license": "MIT",
 	"bin": "dist/cli.js",
@@ -7,7 +7,7 @@
 		"node": ">=10"
 	},
 	"scripts": {
-		"build": "tsc",
+		"build": "webpack",
 		"start": "yarn build && node ./dist/cli.js",
 		"pretest": "yarn build",
 		"test": "xo && ava"
@@ -46,9 +46,8 @@
 		"eslint-plugin-react": "^7.26.1",
 		"eslint-plugin-react-hooks": "^4.2.0",
 		"ink-testing-library": "^2.1.0",
+		"node-polyfill-webpack-plugin": "^1.1.4",
 		"typescript": "^4.4.4",
-		"webpack": "^5.62.1",
-		"webpack-cli": "^4.9.1",
 		"xo": "^0.39.1"
 	}
 }
