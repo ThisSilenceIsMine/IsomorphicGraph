@@ -20,7 +20,9 @@
 		"react": "^17.0.2"
 	},
 	"pkg": {
-		"targets": [ "node16-windows-x64" ],
+		"targets": [
+			"node16-windows-x64"
+		],
 		"output": "./exec"
 	},
 	"devDependencies": {
@@ -31,6 +33,7 @@
 		"eslint-config-xo-react": "^0.25.0",
 		"eslint-plugin-react": "^7.26.1",
 		"eslint-plugin-react-hooks": "^4.2.0",
+		"pkg": "^5.4.1",
 		"typescript": "^4.4.4"
 	}
 }
