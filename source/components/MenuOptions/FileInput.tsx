@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { Box, Text } from 'ink';
+import { UncontrolledTextInput as TextInput } from 'ink-text-input';
+
 import fs from 'fs';
 // import { resolve } from 'path';
 
-import { Prompt } from '..';
+// import { Prompt } from '..';
 
 export const FileInput = () => {
   const [path, setPath] = useState<string | null>(null);
@@ -17,9 +20,11 @@ export const FileInput = () => {
   }, [path]);
 
   return (
-    <Prompt
-      onSubmit={(input) => setPath(input || '.')}
-      prompt="Введіть шлях до файлу з даними"
-    />
+    <Box>
+      <Box marginRight={1}>
+        <Text>Введіть шлях до файлу з даними: </Text>
+      </Box>
+      <TextInput onSubmit={(value) => setPath(value)} />
+    </Box>
   );
 };

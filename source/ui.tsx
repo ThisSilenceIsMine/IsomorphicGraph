@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-//@ts-ignore
 import { Text } from 'ink';
 
 import { Select } from './components';
@@ -15,7 +14,20 @@ const menuOptions = [
 const App = () => {
   const [selected, setSelected] = useState<number | null>(null);
 
-  switch (selected) {
+  if (!selected) {
+    return (
+      <Select
+        menuOptions={menuOptions}
+        onSubmit={(index) => setSelected(index)}
+      />
+    );
+  }
+
+  return renderSwitch(selected);
+};
+
+const renderSwitch = (key: number) => {
+  switch (key) {
     case 0:
       return <KeyboardInput />;
     case 1:
@@ -26,14 +38,8 @@ const App = () => {
       return <Text>Adios!</Text>;
 
     default:
-      return (
-        <Select
-          menuOptions={menuOptions}
-          onSubmit={(index) => setSelected(index)}
-        />
-      );
+      return <Text color="red">ERROR OCCURED!</Text>;
   }
 };
 
-module.exports = App;
 export default App;
