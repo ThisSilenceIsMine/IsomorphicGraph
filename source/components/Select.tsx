@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useInput, Text, Box } from 'ink';
-import Spinner from 'ink-spinner';
+import { useInput, Text } from 'ink';
 
 interface SelectProps {
   menuOptions: string[];
@@ -25,16 +24,13 @@ export const Select = ({ menuOptions, onSubmit }: SelectProps) => {
   const content = menuOptions.map((value, index) => {
     const isSelected = cursor == index;
     return (
-      <Box key={index}>
-        {isSelected && (
-          <Text color="green">
-            <Spinner type="dots" />
-          </Text>
-        )}
-        <Box marginLeft={2}>
-          <Text color={isSelected ? 'green' : undefined}>{value}</Text>
-        </Box>
-      </Box>
+      <Text
+        key={index}
+        backgroundColor={isSelected ? 'green' : undefined}
+        color={isSelected ? 'black' : undefined}
+      >
+        {value}
+      </Text>
     );
   });
 

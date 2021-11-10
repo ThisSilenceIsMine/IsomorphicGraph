@@ -1,6 +1,7 @@
 {
 	"extends": "@sindresorhus/tsconfig",
 	"compilerOptions": {
+		"baseUrl": "./source",
 		"module": "commonjs",
 		"jsx": "react",
 		"esModuleInterop": true,
