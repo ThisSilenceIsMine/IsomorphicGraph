@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Text } from 'ink';
+import { Box, Text, useApp } from 'ink';
 import { UncontrolledTextInput as TextInput } from 'ink-text-input';
 import { join } from 'path';
 
@@ -14,24 +14,37 @@ export interface FileInputProps {
 
 export const FileInput = ({ onSubmit }: FileInputProps) => {
   const [path, setPath] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const { exit } = useApp();
 
   useEffect(() => {
     if (!path) return;
 
     const _path = pathIsAbsolute(path) ? path : join(basePath, path);
 
-    console.log(path);
-    console.log(_path);
+    try {
+      if (!fs.existsSync(_path)) throw `Файл за шляхом ${_path} не знайдено!`;
 
-    const raw = fs.readFileSync(_path, 'utf-8');
-    const { matrix1, matrix2 } = JSON.parse(raw);
-    console.table(matrix1);
-    console.table(matrix2);
+      const raw = fs.readFileSync(_path, 'utf-8');
+      const { matrix1, matrix2 } = JSON.parse(raw);
 
-    return onSubmit(matrix1, matrix2);
+      if (!matrix1 || !matrix2) {
+        throw 'Вхідні дані пошкоджено!';
+      }
+
+      return onSubmit(matrix1, matrix2);
+    } catch (error) {
+      if (typeof error === 'string') {
+        setError(error);
+      } else console.error(error);
+      setTimeout(() => exit(), 500);
+    }
   }, [path]);
 
-  return (
+  return error ? (
+    <Text color="red">{error}</Text>
+  ) : (
     <Box>
       <Box marginLeft={1}>
         <Text>Введіть шлях до файлу з даними: </Text>
