@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Text } from 'ink';
+import { UncontrolledTextInput as TextInput } from 'ink-text-input';
 
 import { Select } from './components';
-import { KeyboardInput, FileInput, Eval } from './components/MenuOptions';
+import { FileInput, Eval } from './components/MenuOptions';
 import { inputData } from 'lib/types';
 
 const menuOptions = [
@@ -32,7 +33,7 @@ const App = () => {
 
   switch (selected) {
     case 0:
-      return <KeyboardInput />;
+      return <TextInput />;
     case 1:
       return <FileInput onSubmit={(V, G) => setData({ V, G })} />;
     case 2:
