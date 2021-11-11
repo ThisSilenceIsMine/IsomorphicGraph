@@ -7,7 +7,7 @@ export const parseMatrix = (input: string, base: number): Matrix => {
     .split('')
     .map((x) => {
       const num = parseInt(x);
-      if (isNaN(num)) throw 'Invalid input';
+      if (isNaN(num)) throw 'Вхідні дані пошкоджено!';
       return num;
     });
 
